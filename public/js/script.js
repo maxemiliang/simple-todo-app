@@ -9,7 +9,7 @@ setInterval(function() {
     var $ul = $('.todos');
     $ul.empty();
     todos.forEach(function(val, i, todos){
-      $('<li id="item-' + i + '" class="list-group-item">' + val + '</li>').appendTo($ul);
+      $('<li id="item-' + i + '" class="list-group-item line-wrap">' + val + '</li>').appendTo($ul);
     });
   });
 }, 3000);
