@@ -1,0 +1,22 @@
+{
+  "name": "simple_todo",
+  "version": "1.0.0",
+  "description": "Its a simple todo-app ",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxemiliang/simple-todo-app.git"
+  },
+  "author": "maxemiliang contact@maxemiliang.me",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maxemiliang/simple-todo-app/issues"
+  },
+  "homepage": "https://github.com/maxemiliang/simple-todo-app#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
