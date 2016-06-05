@@ -4,6 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var hbs = require('hbs');
+var expressValidator = require('express-validator');
+var helmet = require('helmet');
+
 
 var app = express();
 
@@ -15,7 +18,9 @@ hbs.registerPartials(__dirname + '/views/partials');
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
+app.use(helmet());
 app.use(bodyParser.json());
+app.use(expressValidator());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -28,6 +33,8 @@ app.get('/api/get', (req, res) => {
 });
 
 app.post('/api/add', (req, res) => {
+  req.sanitize('text').escape().trim();
+  console.log(req.body.text);
   todos.push(req.body.text);
   res.send(todos);
 });

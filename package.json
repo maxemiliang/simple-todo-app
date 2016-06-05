@@ -19,7 +19,9 @@
   "dependencies": {
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
+    "express-validator": "^2.20.5",
     "hbs": "*",
+    "helmet": "^2.1.0",
     "jquery": "^2.2.4",
     "morgan": "^1.7.0",
     "serve-favicon": "^2.3.0"
