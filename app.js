@@ -7,6 +7,7 @@ var hbs = require('hbs');
 
 var app = express();
 
+var todos = [];
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -20,6 +21,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
   res.render('index');
+});
+
+app.get('/api/get', (req, res) => {
+  res.send(todos);
+});
+
+app.post('/api/add', (req, res) => {
+  todos.push(req.body.text);
+  res.send(todos);
 });
 
 app.listen(process.env.PORT || 1337, (err) => {
