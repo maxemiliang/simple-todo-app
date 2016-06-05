@@ -6,9 +6,18 @@ var bodyParser = require('body-parser');
 var hbs = require('hbs');
 var expressValidator = require('express-validator');
 var helmet = require('helmet');
-
-
 var app = express();
+var client = require('redis').createClient()
+var limiter = require('express-limiter')(app, client)
+
+limiter({
+  path: '/api/add',
+  method: 'post',
+  lookup: ['connection.remoteAddress'],
+  // 150 requests per hour
+  total: 200,
+  expire: 1000 * 60 * 60
+})
 
 var todos = [];
 // view engine setup
@@ -34,7 +43,6 @@ app.get('/api/get', (req, res) => {
 
 app.post('/api/add', (req, res) => {
   req.sanitize('text').escape().trim();
-  console.log(req.body.text);
   todos.push(req.body.text);
   res.send(todos);
 });
