@@ -11,12 +11,12 @@ var client = require('redis').createClient()
 var limiter = require('express-limiter')(app, client)
 
 limiter({
-  path: '/api/add',
-  method: 'post',
-  lookup: ['connection.remoteAddress'],
-  // 100 requests per 10 mins
-  total: 100,
-  expire: 600000
+	path: '/api/add',
+	method: 'post',
+	lookup: ['connection.remoteAddress'],
+	// 100 requests per 10 mins
+	total: 100,
+	expire: 600000
 })
 
 // view engine setup
@@ -29,37 +29,39 @@ app.use(logger('dev'));
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(expressValidator());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+	extended: false
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-  res.render('index');
+	res.render('index');
 });
 
 app.get('/api/get', (req, res) => {
-  client.lrange('todos', 0, -1, (err, reply) => {
-    if (err) throw err;
-    res.send(reply);
-  });
+	client.lrange('todos', 0, -1, (err, reply) => {
+		if (err) throw err;
+		res.send(reply);
+	});
 });
 
 app.post('/api/add', (req, res) => {
-  req.checkBody('text', 'Text is empty').notEmpty();
-  error = req.validationErrors();
-  if (!error) {
-    req.sanitize('text').escape().trim();
-    client.rpush(['todos', req.body.text], (err, reply) => {
-      if (err) throw err;
-    });
-    client.lrange('todos', 0, -1, function(err, reply) {
-      res.send(reply);
-    });
-  } else {
-    res.sendStatus(400);
-  }
+	req.checkBody('text', 'Text is empty').notEmpty();
+	error = req.validationErrors();
+	if (!error) {
+		req.sanitize('text').escape().trim();
+		client.rpush(['todos', req.body.text], (err, reply) => {
+			if (err) throw err;
+		});
+		client.lrange('todos', 0, -1, function(err, reply) {
+			res.send(reply);
+		});
+	} else {
+		res.sendStatus(400);
+	}
 });
 
 app.listen(process.env.PORT || 1337, (err) => {
-  if (err) throw err;
-  console.log("Server running!")
+	if (err) throw err;
+	console.log("Server running!");
 });

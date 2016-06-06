@@ -1,35 +1,35 @@
 {
-  "name": "simple_todo",
-  "version": "1.0.0",
-  "description": "Its a simple todo-app ",
-  "main": "app.js",
-  "scripts": {
-    "test": "npm test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/maxemiliang/simple-todo-app.git"
-  },
-  "author": "maxemiliang contact@maxemiliang.me",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/maxemiliang/simple-todo-app/issues"
-  },
-  "homepage": "https://github.com/maxemiliang/simple-todo-app#readme",
-  "dependencies": {
-    "body-parser": "^1.15.1",
-    "connect-flash": "^0.1.1",
-    "express": "^4.13.4",
-    "express-limiter": "^1.6.0",
-    "express-validator": "^2.20.5",
-    "hbs": "*",
-    "helmet": "^2.1.0",
-    "jquery": "^2.2.4",
-    "morgan": "^1.7.0",
-    "redis": "^2.6.1",
-    "serve-favicon": "^2.3.0"
-  },
-  "devDependencies": {
-    "webpack": "^1.13.1"
-  }
+    "name": "simple_todo",
+    "version": "1.0.0",
+    "description": "Its a simple todo-app ",
+    "main": "app.js",
+    "scripts": {
+        "test": "npm test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/maxemiliang/simple-todo-app.git"
+    },
+    "author": "maxemiliang contact@maxemiliang.me",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/maxemiliang/simple-todo-app/issues"
+    },
+    "homepage": "https://github.com/maxemiliang/simple-todo-app#readme",
+    "dependencies": {
+        "body-parser": "^1.15.1",
+        "connect-flash": "^0.1.1",
+        "express": "^4.13.4",
+        "express-limiter": "^1.6.0",
+        "express-validator": "^2.20.5",
+        "hbs": "*",
+        "helmet": "^2.1.0",
+        "jquery": "^2.2.4",
+        "morgan": "^1.7.0",
+        "redis": "^2.6.1",
+        "serve-favicon": "^2.3.0"
+    },
+    "devDependencies": {
+        "webpack": "^1.13.1"
+    }
 }
