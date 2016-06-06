@@ -14,9 +14,9 @@ limiter({
   path: '/api/add',
   method: 'post',
   lookup: ['connection.remoteAddress'],
-  // 150 requests per hour
-  total: 200,
-  expire: 1000 * 60 * 60
+  // 100 requests per 10 mins
+  total: 100,
+  expire: 600000
 })
 
 var todos = [];
@@ -38,13 +38,20 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/get', (req, res) => {
-  res.send(todos);
+  client.lrange('todos', 0, -1, (err, reply) => {
+    if (err) throw err;
+    res.send(reply);
+  });
 });
 
 app.post('/api/add', (req, res) => {
   req.sanitize('text').escape().trim();
-  todos.push(req.body.text);
-  res.send(todos);
+  client.rpush(['todos', req.body.text], (err, reply) => {
+    if (err) throw err;
+  });
+  client.lrange('todos', 0, -1, function(err, reply) {
+    res.send(reply);
+  });
 });
 
 app.listen(process.env.PORT || 1337, (err) => {
