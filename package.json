@@ -18,6 +18,7 @@
   "homepage": "https://github.com/maxemiliang/simple-todo-app#readme",
   "dependencies": {
     "body-parser": "^1.15.1",
+    "connect-flash": "^0.1.1",
     "express": "^4.13.4",
     "express-limiter": "^1.6.0",
     "express-validator": "^2.20.5",

@@ -44,13 +44,19 @@ app.get('/api/get', (req, res) => {
 });
 
 app.post('/api/add', (req, res) => {
-  req.sanitize('text').escape().trim();
-  client.rpush(['todos', req.body.text], (err, reply) => {
-    if (err) throw err;
-  });
-  client.lrange('todos', 0, -1, function(err, reply) {
-    res.send(reply);
-  });
+  req.checkBody('text', 'Text is empty').notEmpty();
+  error = req.validationErrors();
+  if (!error) {
+    req.sanitize('text').escape().trim();
+    client.rpush(['todos', req.body.text], (err, reply) => {
+      if (err) throw err;
+    });
+    client.lrange('todos', 0, -1, function(err, reply) {
+      res.send(reply);
+    });
+  } else {
+    res.sendStatus(400);
+  }
 });
 
 app.listen(process.env.PORT || 1337, (err) => {
