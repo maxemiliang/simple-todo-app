@@ -1,2 +1,3 @@
 # simple-todo-app
-This is just a simple todo app, as if there aren't enough already 
+This is just a simple todo app,
+made using NodeJS
