@@ -4,7 +4,7 @@ services:
   web:
     build: .
     ports:
-      - "2131:1337"
+      - "1337:1337"
     links:
       - db:redis
 
