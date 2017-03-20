@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - "2131:1337"
+    links:
+      - db:redis
+
+  db:
+    image: redis
+

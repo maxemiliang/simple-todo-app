@@ -7,8 +7,13 @@ var hbs = require('hbs');
 var expressValidator = require('express-validator');
 var helmet = require('helmet');
 var app = express();
-var client = require('redis').createClient()
+var redis = require('redis');
 var limiter = require('express-limiter')(app, client)
+
+var host = process.env.REDIS_PORT_6379_TCP_ADDR || '127.0.0.1';
+var port = process.env.REDIS_PORT_6379_TCP_PORT || 6379;
+
+var client = redis.createClient('6379', 'db');
 
 limiter({
 	path: '/api/add',
