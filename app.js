@@ -65,7 +65,7 @@ app.post('/api/add', (req, res) => {
 	}
 });
 
-app.listen(process.env.PORT || 1337, (err) => {
+app.listen(process.env.PORT || 80, (err) => {
 	if (err) throw err;
 	console.log("Server running!");
 });
