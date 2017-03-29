@@ -13,7 +13,7 @@ var limiter = require('express-limiter')(app, client)
 var host = process.env.REDIS_URL || '127.0.0.1';
 var port = 6379;
 
-var client = redis.createClient('6379', 'db');
+var client = redis.createClient('6379', host);
 
 limiter({
 	path: '/api/add',
