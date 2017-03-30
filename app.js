@@ -8,11 +8,10 @@ var expressValidator = require('express-validator');
 var helmet = require('helmet');
 var app = express();
 var redis = require('redis');
+var host = process.env.REDIS_URL || '127.0.0.1';
+var client = redis.createClient(host);
 var limiter = require('express-limiter')(app, client)
 
-var host = process.env.REDIS_URL || '127.0.0.1';
-
-var client = redis.createClient(host);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 limiter({
 	path: '/api/add',
 	method: 'post',
-	lookup: ['connection.remoteAddress'],
+	lookup: ['headers.x-forwarded-for'],
 	// 100 requests per 10 mins
 	total: 100,
 	expire: 600000
