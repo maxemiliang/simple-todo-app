@@ -7,6 +7,9 @@
         "test": "npm test",
         "start": "node app.js"
     },
+    "engines": {
+        "node": "6.9.0"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/maxemiliang/simple-todo-app.git"
@@ -18,6 +21,7 @@
     },
     "homepage": "https://github.com/maxemiliang/simple-todo-app#readme",
     "dependencies": {
+        "assert-plus": "^1.0.0",
         "body-parser": "^1.15.1",
         "connect-flash": "^0.1.1",
         "eslint": "^3.18.0",
