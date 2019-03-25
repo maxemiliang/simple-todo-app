@@ -75,7 +75,7 @@ app.listen(process.env.PORT || 3000, (err) => {
 
 
 if (process.env.AUTO_WIPE_REDIS_DB) {
-	setTimeout(function () {
+	setInterval(function () {
 		client.FLUSHDB(function (err, reply) {
 			if (err) throw err;
 			console.log('Wiping DB: ' + reply);
