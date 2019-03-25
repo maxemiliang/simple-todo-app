@@ -80,5 +80,5 @@ if (process.env.AUTO_WIPE_REDIS_DB) {
 			if (err) throw err;
 			console.log('Wiping DB: ' + reply);
 		});
-	}, 10000);
+	}, 3600000);
 }
