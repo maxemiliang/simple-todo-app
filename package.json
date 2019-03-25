@@ -5,6 +5,7 @@
     "main": "app.js",
     "scripts": {
         "test": "npm test",
+        "build": "./node_modules/.bin/webpack",
         "start": "node app.js"
     },
     "engines": {
