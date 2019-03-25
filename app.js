@@ -64,6 +64,10 @@ app.post('/api/add', (req, res) => {
 	}
 });
 
+app.get('/api/health', (req, res) => {
+	res.send('Ok!');
+});
+
 app.listen(process.env.PORT || 3000, (err) => {
 	if (err) throw err;
 	console.log("Server running!");
