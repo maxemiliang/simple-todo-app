@@ -64,7 +64,7 @@ app.post('/api/add', (req, res) => {
 	}
 });
 
-app.get('/api/health', (req, res) => {
+app.get('/api/healthz', (req, res) => {
 	res.send('Ok!');
 });
 
