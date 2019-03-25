@@ -56,7 +56,7 @@ app.post('/api/add', (req, res) => {
 		client.rpush(['todos', req.body.text], (err, reply) => {
 			if (err) throw err;
 		});
-		client.lrange('todos', 0, -1, function(err, reply) {
+		client.lrange('todos', 0, -1, function (err, reply) {
 			res.send(reply);
 		});
 	} else {
@@ -68,3 +68,13 @@ app.listen(process.env.PORT || 3000, (err) => {
 	if (err) throw err;
 	console.log("Server running!");
 });
+
+
+if (process.env.AUTO_WIPE_REDIS_DB) {
+	setTimeout(function () {
+		client.FLUSHDB(function (err, reply) {
+			if (err) throw err;
+			console.log('Wiping DB: ' + reply);
+		});
+	}, 10000);
+}
