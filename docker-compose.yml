@@ -4,11 +4,11 @@ services:
   web-server:
     build: .
     ports:
-      - "1337:1337"
+      - '1337:1337'
     links:
       - db:redis
+    environment:
+      REDIS_URL: 'redis://db:6379'
 
   db:
     image: redis
-    labels:
-      - "traefik.enable=false"

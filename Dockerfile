@@ -1,6 +1,9 @@
 FROM node:alpine
-copy package.json package.json
+COPY package.json package.json
 RUN npm install
 
 COPY . .
+COPY CHECKS /app/CHECKS
+RUN npm run build
+
 CMD ["npm", "run", "start"]
