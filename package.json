@@ -29,7 +29,7 @@
         "express": "^4.13.4",
         "express-limiter": "^1.6.0",
         "express-validator": "^2.20.5",
-        "hbs": "*",
+        "hbs": "4.0.2",
         "helmet": "^2.1.0",
         "jquery": ">=3.0.0",
         "morgan": "^1.7.0",
