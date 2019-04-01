@@ -19,7 +19,7 @@ app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+app.use(logger('common'));
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(expressValidator());
