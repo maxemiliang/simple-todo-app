@@ -32,6 +32,12 @@
           <param name="teamcity.step.mode" value="default" />
         </parameters>
       </runner>
+      <runner id="RUNNER_17" name="" type="jonnyzzz.nvm">
+        <parameters>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="version" value="12.14.1" />
+        </parameters>
+      </runner>
     </build-runners>
     <vcs-settings>
       <vcs-entry-ref root-id="SimpleTodoApp_HttpsGithubComMaxemiliangSimpleTodoAppRefsHeadsMaster" />
