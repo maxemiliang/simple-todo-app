@@ -65,15 +65,6 @@
       </build-trigger>
     </build-triggers>
     <build-extensions>
-      <extension id="BUILD_EXT_1" type="commit-status-publisher">
-        <parameters>
-          <param name="publisherId" value="upsourcePublisher" />
-          <param name="secure:upsourcePassword" value="credentialsJSON:8195f424-f48f-46ad-8e02-0bbfffbc1085" />
-          <param name="upsourceProjectId" value="simple-todo-app" />
-          <param name="upsourceServerUrl" value="https://review.maxemiliang.cloud" />
-          <param name="upsourceUsername" value="upsource" />
-        </parameters>
-      </extension>
       <extension id="DockerSupport" type="DockerSupport">
         <parameters>
           <param name="login2registry" value="PROJECT_EXT_7" />
