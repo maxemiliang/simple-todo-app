@@ -1,31 +1,20 @@
-var $ = require('jquery');
-var todos = [];
+const $ = require('jquery');
+let todos = [];
 
-var getTodos = $.get('/api/get');
+/**
+ * fetchTodos
+ * Fetches todos.
+ * @returns {bool} success
+ */
+function fetchTodos() {
+  const updateTodos = $.get('/api/get');
 
-getTodos.done(function(data) {
-  todos = data.reverse();
-  var $ul = $('.todos');
-  $ul.empty();
-  todos.forEach(function(val, i, todos) {
-    $(
-      '<li id="item-' +
-        i +
-        '" class="list-group-item line-wrap">' +
-        val +
-        '</li>'
-    ).appendTo($ul);
-  });
-});
-
-setInterval(function() {
-  var getTodos = $.get('/api/get');
-
-  getTodos.done(function(data) {
+  updateTodos.done(function(data) {
     todos = data.reverse();
-    var $ul = $('.todos');
+    const $ul = $('.todos');
+
     $ul.empty();
-    todos.forEach(function(val, i, todos) {
+    todos.forEach(function(val, i, _) {
       $(
         '<li id="item-' +
           i +
@@ -34,20 +23,28 @@ setInterval(function() {
           '</li>'
       ).appendTo($ul);
     });
+    if (todos.length === 0) {
+      $('<li class="list-group-item line-wrap">Nothing here yet</li>').appendTo(
+        $ul
+      );
+    }
   });
-}, 3000);
+
+  return true;
+}
 
 $('.todo').submit(function(e) {
   e.preventDefault();
-  var post = $.post('/api/add', {
+  const post = $.post('/api/add', {
     text: $('#todoToAdd').val()
   });
 
   post.done(function(data) {
     todos = data.reverse();
-    var $ul = $('.todos');
+    const $ul = $('.todos');
+
     $ul.empty();
-    todos.forEach(function(val, i, todos) {
+    todos.forEach(function(val, i, _) {
       $(
         '<li id="item-' +
           i +
@@ -58,3 +55,6 @@ $('.todo').submit(function(e) {
     });
   });
 });
+
+setInterval(fetchTodos, 3000);
+fetchTodos();
