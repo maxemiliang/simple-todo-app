@@ -12,6 +12,14 @@
         <param name="showChanges" value="false" />
       </parameters>
     </extension>
+    <extension id="PROJECT_EXT_24" type="sonar-qube">
+      <parameters>
+        <param name="id" value="300380cf-d166-4c71-873d-f9ed33a9fd5f" />
+        <param name="login" value="server" />
+        <param name="name" value="server" />
+        <param name="url" value="server" />
+      </parameters>
+    </extension>
     <extension id="PROJECT_EXT_3" type="OAuthProvider">
       <parameters>
         <param name="displayName" value="Docker Registry" />
