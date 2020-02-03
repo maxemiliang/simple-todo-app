@@ -38,6 +38,18 @@
           <param name="version" value="12.14.1" />
         </parameters>
       </runner>
+      <runner id="RUNNER_18" name="Code Analysis" type="sonar-plugin">
+        <parameters>
+          <param name="additionalParameters" value="-Dsonar.exclusions=&quot;public/css/**/*&quot;" />
+          <param name="sonarProjectKey" value="simple-todo-app" />
+          <param name="sonarProjectName" value="simple-todo-app" />
+          <param name="sonarProjectSources" value="src" />
+          <param name="sonarProjectVersion" value="build-%build.number%" />
+          <param name="sonarServer" value="300380cf-d166-4c71-873d-f9ed33a9fd5f" />
+          <param name="teamcity.step.mode" value="default" />
+          <param name="teamcity.tool.sonarquberunner" value="%teamcity.tool.sonar-qube-scanner.DEFAULT%" />
+        </parameters>
+      </runner>
     </build-runners>
     <vcs-settings>
       <vcs-entry-ref root-id="SimpleTodoApp_HttpsGithubComMaxemiliangSimpleTodoAppRefsHeadsMaster" />
