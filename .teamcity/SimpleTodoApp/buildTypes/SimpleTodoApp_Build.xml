@@ -81,6 +81,16 @@
           <param name="vcsRootId" value="SimpleTodoApp_HttpsGithubComMaxemiliangSimpleTodoAppRefsHeadsMaster" />
         </parameters>
       </extension>
+      <extension id="BUILD_EXT_14" type="commit-status-publisher">
+        <parameters>
+          <param name="github_authentication_type" value="token" />
+          <param name="github_host" value="https://api.github.com" />
+          <param name="github_oauth_provider_id" value="PROJECT_EXT_2" />
+          <param name="publisherId" value="githubStatusPublisher" />
+          <param name="secure:github_access_token" value="credentialsJSON:8c64778a-48d1-4a19-9c13-b65146874689" />
+          <param name="vcsRootId" value="SimpleTodoApp_HttpsGithubComMaxemiliangSimpleTodoAppRefsHeadsMaster" />
+        </parameters>
+      </extension>
     </build-extensions>
     <cleanup />
   </settings>
