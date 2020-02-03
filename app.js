@@ -10,8 +10,7 @@ var app = express();
 var redis = require('redis');
 var host = process.env.REDIS_URL || '127.0.0.1';
 var client = redis.createClient(host);
-var limiter = require('express-limiter')(app, client)
-
+var limiter = require('express-limiter')(app, client);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,62 +22,66 @@ app.use(logger('common'));
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(expressValidator());
-app.use(bodyParser.urlencoded({
-	extended: false
-}));
+app.use(
+  bodyParser.urlencoded({
+    extended: false
+  })
+);
 app.use(express.static(path.join(__dirname, 'public')));
 
 limiter({
-	path: '/api/add',
-	method: 'post',
-	lookup: ['headers.x-forwarded-for'],
-	// 100 requests per 10 mins
-	total: 100,
-	expire: 600000
-})
+  path: '/api/add',
+  method: 'post',
+  lookup: ['headers.x-forwarded-for'],
+  // 100 requests per 10 mins
+  total: 100,
+  expire: 600000
+});
 
 app.get('/', (req, res) => {
-	res.render('index');
+  res.render('index');
 });
 
 app.get('/api/get', (req, res) => {
-	client.lrange('todos', 0, -1, (err, reply) => {
-		if (err) throw err;
-		res.send(reply);
-	});
+  client.lrange('todos', 0, -1, (err, reply) => {
+    if (err) throw err;
+    res.send(reply);
+  });
 });
 
 app.post('/api/add', (req, res) => {
-	req.checkBody('text', 'Text is empty').notEmpty();
-	error = req.validationErrors();
-	if (!error) {
-		req.sanitize('text').escape().trim();
-		client.rpush(['todos', req.body.text], (err, reply) => {
-			if (err) throw err;
-		});
-		client.lrange('todos', 0, -1, function (err, reply) {
-			res.send(reply);
-		});
-	} else {
-		res.sendStatus(400);
-	}
+  req.checkBody('text', 'Text is empty').notEmpty();
+  error = req.validationErrors();
+  if (!error) {
+    req
+      .sanitize('text')
+      .escape()
+      .trim();
+    client.rpush(['todos', req.body.text], (err, reply) => {
+      if (err) throw err;
+    });
+    client.lrange('todos', 0, -1, function(err, reply) {
+      res.send(reply);
+    });
+  } else {
+    res.sendStatus(400);
+  }
 });
 
 app.get('/api/healthz', (req, res) => {
-	res.send('Ok!');
+  res.send('Ok!');
 });
 
-app.listen(process.env.PORT || 3000, (err) => {
-	if (err) throw err;
-	console.log("Server running!");
+app.listen(process.env.PORT || 3000, err => {
+  if (err) throw err;
+  console.log('Server running!');
 });
-
 
 if (process.env.AUTO_WIPE_REDIS_DB) {
-	setInterval(function () {
-		client.FLUSHDB(function (err, reply) {
-			if (err) throw err;
-			console.log('Wiping DB: ' + reply);
-		});
-	}, 3600000);
+  setInterval(function() {
+    client.FLUSHDB(function(err, reply) {
+      if (err) throw err;
+      console.log('Wiping DB: ' + reply);
+    });
+  }, 3600000);
 }
