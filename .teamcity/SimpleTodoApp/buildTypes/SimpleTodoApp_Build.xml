@@ -27,7 +27,7 @@
       <runner id="RUNNER_4" name="Push to registry" type="DockerCommand">
         <parameters>
           <param name="docker.command.type" value="push" />
-          <param name="docker.image.namesAndTags" value="registry.maxemiliang.me/projects/simple-todo-app:latest" />
+          <param name="docker.image.namesAndTags" value="registry.maxemiliang.me/projects/simple-todo-app:v%build.number%" />
           <param name="docker.push.remove.image" value="true" />
           <param name="dockerfile.source" value="PATH" />
           <param name="teamcity.step.mode" value="default" />
