@@ -56,7 +56,9 @@
           <param name="jetbrains.buildServer.deployer.targetUrl" value="app.maxemiliang.cloud" />
           <param name="jetbrains.buildServer.deployer.username" value="dokku_deploy" />
           <param name="jetbrains.buildServer.sshexec.authMethod" value="PWD" />
-          <param name="jetbrains.buildServer.sshexec.command" value="docker pull registry.maxemiliang.me/projects/simple-todo-app:v%build.number% &amp;&amp; docker tag registry.maxemiliang.me/projects/simple-todo-app:v%build.number% dokku/todo:v%build.number% &amp;&amp; dokku tags:deploy todo v%build.number%&quot;" />
+          <param name="jetbrains.buildServer.sshexec.command"><![CDATA[docker pull registry.maxemiliang.me/projects/simple-todo-app:v%build.number%
+docker tag registry.maxemiliang.me/projects/simple-todo-app:v%build.number% dokku/todo:v%build.number% 
+dokku tags:deploy todo v%build.number%]]></param>
           <param name="secure:jetbrains.buildServer.deployer.password" value="credentialsJSON:a7c8beda-47ac-41c4-ac85-aad01df3a61c" />
           <param name="teamcity.step.mode" value="default" />
           <param name="teamcitySshKey" value="dokku_deployV2" />
