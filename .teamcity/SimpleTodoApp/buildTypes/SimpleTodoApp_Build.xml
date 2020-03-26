@@ -54,10 +54,12 @@
       <runner id="RUNNER_6" name="Deploy application" type="ssh-exec-runner">
         <parameters>
           <param name="jetbrains.buildServer.deployer.targetUrl" value="app.maxemiliang.cloud" />
-          <param name="jetbrains.buildServer.deployer.username" value="dokku" />
-          <param name="jetbrains.buildServer.sshexec.authMethod" value="UPLOADED_KEY" />
-          <param name="jetbrains.buildServer.sshexec.command" value="docker load | dokku tags:deploy todo v%build.number%&quot;" />
-          <param name="secure:jetbrains.buildServer.deployer.password" value="credentialsJSON:e47786c6-47b4-49c0-a057-eaf207d8cad7" />
+          <param name="jetbrains.buildServer.deployer.username" value="dokku_deploy" />
+          <param name="jetbrains.buildServer.sshexec.authMethod" value="PWD" />
+          <param name="jetbrains.buildServer.sshexec.command"><![CDATA[docker pull registry.maxemiliang.me/projects/simple-todo-app:v%build.number%
+docker tag registry.maxemiliang.me/projects/simple-todo-app:v%build.number% dokku/todo:v%build.number%
+dokku tags:deploy todo v%build.number%"]]></param>
+          <param name="secure:jetbrains.buildServer.deployer.password" value="credentialsJSON:a7c8beda-47ac-41c4-ac85-aad01df3a61c" />
           <param name="teamcity.step.mode" value="default" />
           <param name="teamcitySshKey" value="dokku_deployV2" />
         </parameters>
