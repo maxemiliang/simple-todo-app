@@ -37,6 +37,6 @@
         "serve-favicon": "^2.4.5"
     },
     "devDependencies": {
-        "webpack": "^1.13.1"
+        "webpack": "^5.75.0"
     }
 }
